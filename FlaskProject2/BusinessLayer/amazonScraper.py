@@ -4,7 +4,7 @@ from FlaskProject2.BusinessLayer.scraper import Scraper
 amazon_driver = Driver(True)
 
 
-class scrapeAmazon(Scraper):
+class ScrapeAmazon(Scraper):
     def __init__(self):
         self.driver = amazon_driver.get_driver()
 

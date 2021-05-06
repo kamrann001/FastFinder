@@ -5,7 +5,7 @@ from FlaskProject2.BusinessLayer.scraper import Scraper
 tapaz_driver = Driver(True)
 
 
-class scrapeTapaz(Scraper):
+class ScrapeTapaz(Scraper):
     def __init__(self):
         self.driver = tapaz_driver.get_driver()
 
@@ -55,5 +55,4 @@ class scrapeTapaz(Scraper):
             if record:
                 records.append(record)
 
-        self.driver.quit()
         return records
