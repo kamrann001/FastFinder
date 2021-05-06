@@ -1,10 +1,10 @@
-from FlaskProject2.BusinessLayer.amazonScraper import scrapeAmazon
+from FlaskProject2.BusinessLayer.amazonScraper import ScrapeAmazon
 from FlaskProject2.BusinessLayer.amazonDisplayer import displayAmazon
 
-amazon = scrapeAmazon()
+amazon = ScrapeAmazon()
 amazon_displayer = displayAmazon(amazon)
 
-from FlaskProject2.BusinessLayer.tapazScraper import scrapeTapaz
+from FlaskProject2.BusinessLayer.tapazScraper import ScrapeTapaz
 from FlaskProject2.BusinessLayer.tapazDisplayer import displayTapaz
 
 tapaz = scrapeTapaz()

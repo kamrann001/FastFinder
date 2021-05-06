@@ -1,68 +1,45 @@
 from FlaskProject2.BusinessLayer.scraper import Scraper
-from FlaskProject2.BusinessLayer.driver import Driver
-from bs4 import BeautifulSoup
-
-aliexpress_driver = Driver(True)
+import requests
+import json
 
 
 class aliexpressScraper(Scraper):
-    def __init__(self):
-        self.driver = aliexpress_driver.get_driver()\
-
-
     @staticmethod
-    def scrapeAliexpress(self, product):
-        if product == '':
-            return []
-        url = f'https://www.aliexpress.com/wholesale?catId=0&initiative_id=SB_20210415083131&SearchText={product}'
+    def createApi(product):
 
-        chromeOptions = Options()
-        chromeOptions.headless = False
-        driver = webdriver.Chrome(executable_path=PATH, options=chromeOptions)
-        driver.get(url)
-        sleep(1)
-        soup = BeautifulSoup(driver.page_source, 'lxml')
-        results = soup.find_all('div', {'class': "product-card"})
+        url = "https://magic-aliexpress1.p.rapidapi.com/api/products/search"
 
-        def extract_list(item):
-            # description
-            atag = item.a
-            try:
-                description = item.find('a', 'item-title').get('title').strip()
-            except AttributeError:
-                description = "No title available"
-            url = atag.get('href')
+        querystring = {"name": product}
 
-            # getting price
-            try:
-                price = item.find('span', 'price-current').text
-                price_tag = price
-                price = str(price.encode(encoding="ascii", errors="replace"))
-                price = price.split("-")[0]
-                price = price.replace("?", "").replace("'", "").replace(",", ".")
-                price = price[1:]
-                price = price[:-2]
-                price = float(price)
-            except AttributeError:
-                price_tag = 'No price available'
-                price = 0
-            # rating
-            try:
-                rating = item.find('span', 'rating-value').text
+        headers = {
+            'x-rapidapi-key': "4b8f198acemsh3f250505b04fbd8p15736ajsndf9e45e323b6",
+            'x-rapidapi-host': "magic-aliexpress1.p.rapidapi.com"
+        }
 
-            except AttributeError:
-                rating = 'No rating available'
-
-            result = {'description': description, 'price': price, 'price_tag': price_tag, 'rating': rating, 'url': url}
-            return result
+        response = requests.request("GET", url, headers=headers, params=querystring)
+        data = json.loads(str(response.text))
+        item_list = data['docs']
 
         records = []
+        for item in item_list:
+            description = item['product_title']
+            price = item['app_sale_price']
+            currency = item['app_sale_price_currency']
+            url = item['product_detail_url']
 
-        for item in results:
-            record = extract_list(item)
+            try:
+                rating_val = item['evaluate_rate']
+                rating = str(rating_val) + '/5'
+            except:
+                rating_val = 0
+                rating = "No rating available"
+            result = {'description': description, 'price': price, 'currency':currency, 'rating': rating, 'url': url}
+            records.append(result)
 
-            if record:
-                records.append(record)
-
-        driver.quit()
         return records
+
+    def web_scrape(self, product):
+        result = self.createApi(product)
+        return result
+
+

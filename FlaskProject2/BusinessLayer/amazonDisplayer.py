@@ -6,7 +6,7 @@ class displayAmazon(Displayer):
     def __init__(self, amazonScraper: Scraper):
         self.amazonScraper = amazonScraper
 
-    def display(self, item, sort_style, amazon, currency, min_price=0.0, max_price=100000.0):
+    def display(self, item, sort_style, amazon, currency, min_price=0, max_price=999999):
         if amazon:
             amazon_products = self.amazonScraper.web_scrape(item)
             if currency == 'azn':

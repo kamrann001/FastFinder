@@ -1,10 +1,14 @@
 from FlaskProject2.BusinessLayer.displayer import Displayer
+from FlaskProject2.BusinessLayer.scraper import Scraper
 
 
 class displayAliexpress(Displayer):
-    def displayAliexpress(self, item, sort_style, aliexpress, currency, min_price=0, max_price=999999):
+    def __init__(self, aliexpressScraper: Scraper):
+        self.aliexpressScraper = aliexpressScraper
+
+    def display(self, item, sort_style, aliexpress, currency, min_price=0, max_price=999999):
         if aliexpress:
-            aliexpress_products = scrapeAliexpress(item)
+            aliexpress_products = self.aliexpressScraper.web_scrape(item)
             if currency == 'usd':
                 for i in aliexpress_products:
                     i['price'] = round((i['price'] * 0.013), 2)
