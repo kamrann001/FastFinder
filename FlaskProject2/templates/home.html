@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type ="text/css" href="{{ url_for('static',filename='main.css')}}">
+
+    {% if title %}
+        <title>FastFinder - {{ title }}</title>
+    {% else %}
+        <title>FastFinder</title>
+    {% endif %}
+</head>
+<body>
+    <header class="site-header">
+      <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+        <div class="container">
+          <a class="navbar-brand mr-4" href="/">FastFinder</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarToggle">
+            <div class="navbar-nav mr-auto">
+              <a class="nav-item nav-link" href="/">Home</a>
+              <a class="nav-item nav-link" href="/about">About</a>
+            </div>
+            <!-- Navbar Right Side -->
+            <div class="navbar-nav">
+              <a class="nav-item nav-link" href="/login">Login</a>
+              <a class="nav-item nav-link" href="/register">Register</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <div class="input-group">
+        <h1 style="margin-left:200px" class="header">Welcome to the home page!</h1>
+    </div>
+    <style>
+        h1.header{
+            size: 50px;
+            color: #306AF4;
+            margin-bottom: 40px;
+        }
+    </style>
+
+    <form method="post" action="#">
+    <div class="input-group">
+
+        <input style="margin-left: 200px" type="search" class="form-control rounded" name="search" placeholder="Type any product name to find" aria-label="Search"
+        aria-describedby="search-addon" />
+        <button style="margin-left: 3px" type="submit" class="btn btn-outline-primary">Search!</button>
+    </div>
+
+    <div style="margin-left: 200px;margin-top: 3px; display: flex; justify-content: flex-start">
+                <input style="width: 10%; margin-right: 20px" type="text" class="form-control dropdown" name="min" placeholder="min price">
+                <input style="width: 10%" type="text" class="form-control dropdown" name="max" placeholder="max price">
+            </div>
+    <br>
+             <label style="margin-left: 200px" for="sort">Sort by price:</label>
+                <select name="sort" id="sort" class="dropdown">
+                  <option name="none" value="none">None</option>
+                  <option name="ascending" value="ascending">Ascending order</option>
+                  <option name="descending" value="descending">Descending order</option>
+                </select>
+
+            <label style="margin-left: 20px" for="currency">Convert to currency: </label>
+                <select name="currency" id="currency" class="dropdown">
+                  <option name="none" value="none">None</option>
+                  <option name="usd" value="usd">USD</option>
+                  <option name="azn" value="azn">AZN</option>
+                </select>
+        <br>
+
+    <div class="input-group" style="margin-left: 200px; text-align: center">
+            <input type="checkbox" id="web1" name="amazon" checked>
+            <label for="option1"> Amazon.com &nbsp&nbsp </label><br>
+            <input type="checkbox" id="web2" name="tapaz" checked>
+            <label for="option2"> Tap.az &nbsp&nbsp </label><br>
+            <input type="checkbox" id="web3" name="aliexpress" checked>
+            <label for="option3"> Aliexpress.com &nbsp&nbsp </label><br>
+    </div>
+    </form>
+
+    <br>
+    <br>
+
+    <div style="margin-left: 20px; margin-right: 20px " class="flex-container">
+        <div class="column-left">
+            <h style ="font-size: 23px"><b>Amazon results</b></h>
+            <hr/>
+            {% for item in amazon_products %}
+                <div>
+                    <h5 style="color: steelblue;font-size: 19px">
+                        <a href={{ item.get("url") }}> {{ item.get("description") }} </a>
+                    </h5>
+                    <h5 style="font-size: 18px"> Price:
+                        {{ item.get("price") }}
+                    </h5 >
+                    <h5 style="font-size: 15px"> Rating:
+                        {{ item.get("rating") }}
+                    </h5>
+                    <br>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="column-center">
+            <h style="font-size: 23px"><b>Tap.az results</b></h>
+            <hr/>
+            {% for item in tapaz_products %}
+                <div>
+                    <h5 style="color: steelblue;font-size: 19px">
+                        <a href={{ item.get("url") }}> {{ item.get("description") }} </a>
+                    </h5>
+                    <h5 style="font-size: 18px"> Price:
+                        {{ item.get("price") }}
+                    </h5 >
+                    <br>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="column-right">
+            <h style="font-size: 23px"><b>Aliexpress.com results</b></h>
+            <hr/>
+            {% for item in aliexpress_products %}
+                <div>
+                    <h5 style="color: steelblue;font-size: 19px">
+                        <a href={{ item.get("url") }}> {{ item.get("description") }} </a>
+                    </h5>
+                    <h5 style="font-size: 18px"> Price:
+                        {{ item.get("price") }}
+                    </h5 >
+                    <h5 style="font-size: 15px"> Rating:
+                        {{ item.get("rating") }}
+                    </h5>
+                    <br>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
