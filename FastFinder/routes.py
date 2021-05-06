@@ -1,8 +1,8 @@
 from flask import render_template, request
-from FlaskProject2.BusinessLayer import amazon_displayer
-from FlaskProject2.BusinessLayer import tapaz_displayer
-from FlaskProject2.BusinessLayer import aliexpress_displayer
-from FlaskProject2 import app
+from FastFinder.BusinessLayer import amazon_displayer
+from FastFinder.BusinessLayer import tapaz_displayer
+from FastFinder.BusinessLayer import aliexpress_displayer
+from FastFinder import app
 
 @app.route('/', methods=['GET', 'POST'])
 def home():

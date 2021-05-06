@@ -1,4 +1,4 @@
-from FlaskProject2 import app
+from FastFinder import app
 
 if __name__ == '__main__':
     app.run(debug=False)

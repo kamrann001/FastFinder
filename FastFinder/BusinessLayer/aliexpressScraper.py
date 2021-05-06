@@ -1,4 +1,4 @@
-from FlaskProject2.BusinessLayer.scraper import Scraper
+from FastFinder.BusinessLayer.scraper import Scraper
 import requests
 import json
 

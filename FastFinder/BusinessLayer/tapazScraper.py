@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
-from FlaskProject2.BusinessLayer.driver import Driver
-from FlaskProject2.BusinessLayer.scraper import Scraper
+from FastFinder.BusinessLayer.driver import Driver
+from FastFinder.BusinessLayer.scraper import Scraper
 
 tapaz_driver = Driver(True)
 
