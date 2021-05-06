@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
-from FlaskProject2.BusinessLayer.driver import Driver
-from FlaskProject2.BusinessLayer.scraper import Scraper
+from FlaskProject.BusinessLayer.driver import Driver
+from FlaskProject.BusinessLayer.scraper import Scraper
 
 tapaz_driver = Driver(True)
 
@@ -52,7 +52,7 @@ class ScrapeTapaz(Scraper):
 
         for item in results:
             record = self.scrape_tapaz(item)
-            if record:
+            if record['price'] != 0:
                 records.append(record)
 
         return records

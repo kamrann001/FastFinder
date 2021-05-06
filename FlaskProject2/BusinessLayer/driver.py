@@ -13,7 +13,3 @@ class Driver:
 
     def get_driver(self):
         return self.driver
-
-    def close_driver(self):
-        self.driver.close()
-        self.driver.quit()

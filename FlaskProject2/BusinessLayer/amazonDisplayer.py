@@ -1,5 +1,5 @@
-from FlaskProject2.BusinessLayer.displayer import Displayer
-from FlaskProject2.BusinessLayer.scraper import Scraper
+from FlaskProject.BusinessLayer.displayer import Displayer
+from FlaskProject.BusinessLayer.scraper import Scraper
 
 
 class displayAmazon(Displayer):
