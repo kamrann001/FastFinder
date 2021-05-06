@@ -9,7 +9,7 @@ class scrapeAmazon(Scraper):
         self.driver = amazon_driver.get_driver()
 
     @staticmethod
-    def scrapeAmazon(item):
+    def scrape_amazon(item):
         # description
         atag = item.h2.a
         description = atag.text.strip()
@@ -36,7 +36,7 @@ class scrapeAmazon(Scraper):
         result = {'description': description, 'price': price, 'price_tag': price_tag, 'rating': rating, 'url': url}
         return result
 
-    def web_scrape(self,product):
+    def web_scrape(self, product):
         if product == '':
             return []
         url = f'https://amazon.com/s?k={product}'
@@ -46,12 +46,10 @@ class scrapeAmazon(Scraper):
         soup = BeautifulSoup(self.driver.page_source, 'lxml')
         results = soup.find_all('div', {'data-component-type': 's-search-result'})
         records = []
-
         for item in results:
-            record = self.scrapeAmazon(item)
-
-        if record:
-            records.append(record)
+            record = self.scrape_amazon(item)
+            if record:
+                records.append(record)
 
         self.driver.quit()
         return records

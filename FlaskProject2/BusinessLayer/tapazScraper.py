@@ -10,33 +10,32 @@ class scrapeTapaz(Scraper):
         self.driver = tapaz_driver.get_driver()
 
     @staticmethod
-    def scrapeTapaz(item):
+    def scrape_tapaz(item):
 
-        def extract_list(item):
-            # description
-            atag = item.a
-            description = item.find('div', 'products-name').text.strip()
-            url = 'https://tap.az' + atag.get('href')[:-9]
+        # description
+        atag = item.a
+        description = item.find('div', 'products-name').text.strip()
+        url = 'https://tap.az' + atag.get('href')[:-9]
 
-            # getting price
-            try:
-                price = item.find('div', 'products-price').text
-                price_tag = price  # saving price as a string to display
+        # getting price
+        try:
+            price = item.find('div', 'products-price').text
+            price_tag = price  # saving price as a string to display
 
-                price = price.replace(" ", "")
-                price = float(price[:-3])
-            except AttributeError:
-                price_tag = 'No price available'
-                price = 0
-            # rating
-            try:
-                rating = item.find('span', 'a-icon-alt').text
+            price = price.replace(" ", "")
+            price = float(price[:-3])
+        except AttributeError:
+            price_tag = 'No price available'
+            price = 0
+        # rating
+        try:
+            rating = item.find('span', 'a-icon-alt').text
 
-            except AttributeError:
-                rating = ''
+        except AttributeError:
+            rating = ''
 
-            result = {'description': description, 'price': price, 'price_tag': price_tag, 'rating': rating, 'url': url}
-            return result
+        result = {'description': description, 'price': price, 'price_tag': price_tag, 'rating': rating, 'url': url}
+        return result
 
     def web_scrape(self, product):
         if product == '':
@@ -52,10 +51,9 @@ class scrapeTapaz(Scraper):
         records = []
 
         for item in results:
-            record = self.scrapeTapaz(item)
-
-        if record:
-            records.append(record)
+            record = self.scrape_tapaz(item)
+            if record:
+                records.append(record)
 
         self.driver.quit()
         return records

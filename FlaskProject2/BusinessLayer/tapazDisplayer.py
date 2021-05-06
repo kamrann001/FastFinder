@@ -2,13 +2,14 @@ from FlaskProject2.BusinessLayer.displayer import Displayer
 from FlaskProject2.BusinessLayer.scraper import Scraper
 
 
+
 class displayTapaz(Displayer):
     def __init__(self, tapazScraper: Scraper):
         self.tapazScraper = tapazScraper
 
     def display(self, item, sort_style, tapaz, currency, min_price=0, max_price=999999):
         if tapaz:
-            tapaz_products = self.tapazScraper.scrape(item)
+            tapaz_products = self.tapazScraper.web_scrape(item)
             if currency == 'usd':
                 for i in tapaz_products:
                     i['price'] = round((i['price'] * 0.59), 2)

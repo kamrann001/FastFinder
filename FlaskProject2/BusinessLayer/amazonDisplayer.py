@@ -8,7 +8,7 @@ class displayAmazon(Displayer):
 
     def display(self, item, sort_style, amazon, currency, min_price=0.0, max_price=100000.0):
         if amazon:
-            amazon_products = self.amazonScraper.scrape(item)
+            amazon_products = self.amazonScraper.web_scrape(item)
             if currency == 'azn':
                 for i in amazon_products:
                     i['price'] = round((i['price'] * 1.7), 2)
