@@ -1,5 +1,5 @@
-from FlaskProject.BusinessLayer.displayer import Displayer
-from FlaskProject.BusinessLayer.scraper import Scraper
+from FlaskProject2.BusinessLayer.displayer import Displayer
+from FlaskProject2.BusinessLayer.scraper import Scraper
 
 
 class displayAliexpress(Displayer):

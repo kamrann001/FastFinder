@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
-from FlaskProject.BusinessLayer.driver import Driver
-from FlaskProject.BusinessLayer.scraper import Scraper
+from FlaskProject2.BusinessLayer.driver import Driver
+from FlaskProject2.BusinessLayer.scraper import Scraper
 amazon_driver = Driver(True)
 
 
@@ -51,5 +51,4 @@ class ScrapeAmazon(Scraper):
             if record:
                 records.append(record)
 
-        self.driver.quit()
         return records

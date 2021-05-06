@@ -1,4 +1,4 @@
-from FlaskProject.BusinessLayer.scraper import Scraper
+from FlaskProject2.BusinessLayer.scraper import Scraper
 import requests
 import json
 

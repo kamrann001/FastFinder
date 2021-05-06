@@ -1,8 +1,8 @@
 from flask import render_template, request
-from FlaskProject.BusinessLayer import amazon_displayer
-from FlaskProject.BusinessLayer import tapaz_displayer
-from FlaskProject.BusinessLayer import aliexpress_displayer
-from FlaskProject import app
+from FlaskProject2.BusinessLayer import amazon_displayer
+from FlaskProject2.BusinessLayer import tapaz_displayer
+from FlaskProject2.BusinessLayer import aliexpress_displayer
+from FlaskProject2 import app
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
@@ -13,8 +13,8 @@ def home():
         sort_style = request.form["sort"]
         currency = request.form["currency"]
         amazon = request.form.getlist('amazon')
-        tapaz = request.form.getlist('tapaz')
         aliexpress = request.form.getlist('aliexpress')
+        tapaz = request.form.getlist('tapaz')
         amazon_products = amazon_displayer.display(item, sort_style, amazon, currency, min_price, max_price)
         tapaz_products = tapaz_displayer.display(item, sort_style, tapaz, currency, min_price, max_price)
         aliexpress_products = aliexpress_displayer.display(item, sort_style, aliexpress, currency, min_price, max_price)
