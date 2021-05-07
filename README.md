@@ -1,6 +1,6 @@
-#This is a website application to search from three different shopping websites by using different kinds of filters
+# This is a website application to search from three different shopping websites by using different kinds of filters
 <br /><br />
-##Installation:<br />
+## Installation:<br />
 Get the source code of application <br/>`git clone https://github.com/kamrann001/FastFinder.git`
 <br /><br />Activate the virtual env: <br/>
 `venv/Scripts/activate` for Windows  
