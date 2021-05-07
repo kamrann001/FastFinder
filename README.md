@@ -11,4 +11,7 @@ Install the required dependencies: <br /> `pip3 install -r requirements.txt` <br
 Running the application :
 <br />  `python3 run.py`
 
+
+## Usage:<br/>
+Type in the name of product you want to search and use different filters to sort the results by their prices, currencies and you can also choose which website to search from.
 If any problems occur, you can contact kamrann8175@gmail.com address
