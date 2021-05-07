@@ -3,7 +3,7 @@ from abc import ABCMeta, abstractmethod
 
 class Displayer(metaclass=ABCMeta):
     @abstractmethod
-    def display(self, item, sort_style, amazon, currency, min_price=0, max_price=999999):
+    def display(self, item, sort_style, web, currency, min_price=0, max_price=999999):
         pass
 
     @staticmethod
