@@ -1,6 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
+
 PATH = "C:\Program Files (x86)\chromedriver.exe"
 
 class Driver:
