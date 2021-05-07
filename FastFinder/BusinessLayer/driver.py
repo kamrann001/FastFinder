@@ -1,9 +1,10 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+import json
+with open("config.json") as json_file:
+    data = json.load(json_file)
 
-
-
-PATH = "C:\Program Files (x86)\chromedriver.exe"
+PATH = data['PATH']
 
 class Driver:
     def __init__(self, headless):

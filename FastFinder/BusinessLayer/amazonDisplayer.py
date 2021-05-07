@@ -12,6 +12,7 @@ class displayAmazon(Displayer):
             if currency == 'azn':
                 for i in amazon_products:
                     i['price'] = round((i['price'] * 1.7), 2)
+                    i['price'] = str(i['price']) + 'AZN'
 
             if min_price and max_price:
                 amazon_products = self.minMaxPrice(amazon_products, float(min_price), float(max_price))
