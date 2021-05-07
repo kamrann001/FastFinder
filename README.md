@@ -13,5 +13,5 @@ Running the application :
 
 
 ## Usage:<br/>
-Type in the name of product you want to search and use different filters to sort the results by their prices, currencies and you can also choose which website to search from.
+Type in the name of product you want to search and use different filters to sort the results by their prices, currencies and you can also choose which website to search from.<br/><br/>
 If any problems occur, you can contact kamrann8175@gmail.com address
